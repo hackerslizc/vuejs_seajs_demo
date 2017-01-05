@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue + seajs demo项目</title>
+    <link rel="stylesheet" href="static/css/style.css" type="text/css">
+</head>
+<body>
+
+
+<div id="app">
+    <!--导航组件-->
+    <!--<p>
+        <a v-link="{ name: 'foo', params: { params1: 'a',params2:'b' } }">导航一</a> |
+        <a v-link="{ name: 'foo', params: { params1: 'a',params2:'c' } }">导航一-1</a> |
+        <a href="#/bar">导航二</a>  |
+    </p>-->
+    <menu></menu>
+
+
+    <!-- 路由外链 -->
+    <router-view></router-view>
+</div>
+
+
+<script src="./static/js/lib/jquery-1.11.2.js"></script>
+<script src="./static/js/lib/sea.js"></script>
+<script src="./static/js/lib/vue.js"></script>
+<script src="./static/js/lib/vue-router.min.js"></script>
+<script>
+    var gMain = {
+        verson: "1.0"
+        , basePath: "/vue+seajs/"
+    };
+
+    /**
+     * seajs配置信息
+     */
+    seajs.config({
+        base: "./static"  //seajs的基础路径（组织人事，元数据项目的模块）
+        , charset: 'utf-8'
+        , map: [[/^(.*\.(?:css|js|html))(.*)$/i, '$1?v=_VERSION_' + '-' + gMain.verson]]  //加上版本号，清缓存用
+        //公共路径
+        , paths: {}
+    });
+
+    $(function () {
+        seajs.use(["js/app.js"]);
+    });
+</script>
+</body>
+</html>
